@@ -1,25 +1,31 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
-  @Column({ type: "varchar" })
+  @Column()
   name: string;
 
-  @Column({ type: "varchar", unique: true })
+  @Column()
   email: string;
 
-  @Column({ type: "varchar" })
+  @Column()
   password: string;
 
-  @Column({ type: "varchar", nullable: true })
+  @Column()
   avatar: string;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @CreateDateColumn()
   created_at: Date;
 
-  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  @UpdateDateColumn()
   updated_at: Date;
 }

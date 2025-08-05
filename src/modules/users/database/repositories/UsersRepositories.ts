@@ -8,7 +8,7 @@ export const usersRepositories = AppDataSource.getRepository(User).extend({
   async findByName(name: string): Promise<User | null> {
     return this.findOneBy({ name });
   },
-  async findById(id: string): Promise<User | null> {
+  async findById(id: number): Promise<User | null> {
     return this.findOneBy({ id });
   },
 });
