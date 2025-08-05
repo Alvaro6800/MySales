@@ -24,7 +24,7 @@ export default class ShowProductService {
 
     const productExists = await productsRepositories.findByName(name);
 
-    if (productExists) {
+    if (productExists && productExists.id != id) {
       throw new AppError("There is already one product with this name", 400);
     }
 

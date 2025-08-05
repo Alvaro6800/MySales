@@ -26,7 +26,7 @@ export default class ShowUserService {
 
     const userExists = await usersRepositories.findByEmail(email);
 
-    if (userExists) {
+    if (userExists && userExists.id != id) {
       throw new AppError("There is already one user with this email", 400);
     }
 
