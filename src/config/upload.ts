@@ -1,7 +1,6 @@
 import path from "path";
 import multer, { StorageEngine } from "multer";
 import crypto from "crypto";
-import { dir } from "console";
 
 interface IUploadConfig {
   directory: string;
