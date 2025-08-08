@@ -2,13 +2,13 @@ import AppError from "@shared/errors/AppError";
 import { User } from "../database/entities/User";
 import { usersRepositories } from "../database/repositories/UsersRepositories";
 
-interface IShowUser {
-  id: string;
+interface IShowProfile {
+  user_id: number;
 }
 
-export default class ShowUserService {
-  public async execute({ id }: IShowUser): Promise<User> {
-    const user = await usersRepositories.findById(id);
+export default class ShowProfileService {
+  public async execute({ user_id }: IShowProfile): Promise<User> {
+    const user = await usersRepositories.findById(user_id);
 
     if (!user) {
       throw new AppError("User not found", 404);
