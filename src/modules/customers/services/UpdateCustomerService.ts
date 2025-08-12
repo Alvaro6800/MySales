@@ -16,14 +16,22 @@ export default class UpdateCustomerService {
       throw new AppError("Customer not found", 404);
     }
 
-    const customerExists = await customersRepositories.findByEmail(email);
+    if (email) {
+      const customerExists = await customersRepositories.findByEmail(email);
 
-    if (customerExists && customerExists.email != email) {
-      throw new AppError("There is already one customer with this email", 400);
+      console.log(customerExists?.email, email);
+
+      if (customerExists && customerExists.email !== email) {
+        throw new AppError(
+          "There is already one customer with this email",
+          400,
+        );
+      }
+
+      costumer.email = email;
     }
 
-    costumer.name = name;
-    costumer.email = email;
+    costumer.name = name ? name : costumer.name;
 
     await customersRepositories.save(costumer);
 
