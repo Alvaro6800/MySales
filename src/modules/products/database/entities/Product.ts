@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { OrdersProducts } from "@modules/orders/database/entities/OrdersProducts";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("products")
 export class Product {
@@ -10,6 +11,11 @@ export class Product {
 
   @Column({ type: "decimal", precision: 10, scale: 2 })
   price: number;
+
+  @OneToMany(() => OrdersProducts, (order_products) => order_products.product, {
+    cascade: true,
+  })
+  order_products: OrdersProducts[];
 
   @Column({ type: "int" })
   quantity: number;
