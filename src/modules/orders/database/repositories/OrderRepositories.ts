@@ -1,19 +1,26 @@
 import { AppDataSource } from "@shared/typeorm/data-source";
 import { Order } from "../entities/Orders";
 import { Customer } from "@modules/customers/database/entities/Customer";
-import { OrdersProducts } from "../entities/OrdersProducts";
 
 interface ICreateOrder {
   customer: Customer;
-  products: OrdersProducts[];
+  products: ICreateOrderProducts[];
+}
+
+interface ICreateOrderProducts {
+  product_id: string;
+  price: number;
+  quantity: number;
 }
 
 export const orderRepositories = AppDataSource.getRepository(Order).extend({
   async findById(id: number): Promise<Order | null> {
-    const order = this.findOne({
+    const order = await this.findOne({
       where: { id },
-      relations: ["order_products", "costumer"],
+      relations: ["order_products", "customer"],
     });
+
+    console.log(order);
 
     return order;
   },
