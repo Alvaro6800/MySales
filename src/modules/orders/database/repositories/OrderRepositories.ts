@@ -20,8 +20,6 @@ export const orderRepositories = AppDataSource.getRepository(Order).extend({
       relations: ["order_products", "customer"],
     });
 
-    console.log(order);
-
     return order;
   },
 

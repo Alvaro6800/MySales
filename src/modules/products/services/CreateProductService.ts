@@ -1,6 +1,7 @@
 import AppError from "@shared/errors/AppError";
 import { productsRepositories } from "../database/repositories/ProductsRepositories";
 import { Product } from "../database/entities/Product";
+import RedisCache from "@shared/cache/RedisCache";
 
 interface ICreateProduct {
   name: string;
@@ -14,6 +15,7 @@ export default class CreateProductService {
     price,
     quantity,
   }: ICreateProduct): Promise<Product> {
+    const redisCache = new RedisCache();
     const productExists = await productsRepositories.findByName(name);
 
     if (productExists)
@@ -26,6 +28,8 @@ export default class CreateProductService {
     });
 
     await productsRepositories.save(product);
+
+    await redisCache.invalidate("api-mysales-PRODUCT_LIST");
 
     return product;
   }
