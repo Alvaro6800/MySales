@@ -1,9 +1,8 @@
 import AppError from "@shared/errors/AppError";
-
-import { userTokensRepositories } from "../database/repositories/UserTokensRepositories";
-import { usersRepositories } from "../database/repositories/UsersRepositories";
 import { addHours, isAfter } from "date-fns";
 import { hash } from "bcrypt";
+import { userTokensRepositories } from "../infra/database/repositories/UserTokensRepositories";
+import { usersRepositories } from "../infra/database/repositories/UsersRepositories";
 
 interface IResetPassword {
   token: string;

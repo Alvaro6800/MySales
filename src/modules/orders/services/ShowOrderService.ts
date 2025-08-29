@@ -1,6 +1,6 @@
 import AppError from "@shared/errors/AppError";
-import { Order } from "../database/entities/Orders";
-import { orderRepositories } from "../database/repositories/OrderRepositories";
+import { orderRepositories } from "../infra/database/repositories/OrderRepositories";
+import { Order } from "../infra/database/entities/Orders";
 
 interface IShowOrder {
   id: string;

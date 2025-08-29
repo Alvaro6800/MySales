@@ -1,6 +1,6 @@
 import AppError from "@shared/errors/AppError";
-import { customersRepositories } from "../database/repositories/CustomersRepositories";
-import { Customer } from "../database/entities/Customer";
+import { customersRepositories } from "../infra/database/repositories/CustomersRepositories";
+import { Customer } from "../infra/database/entities/Customer";
 
 interface ICreateCustomer {
   name: string;

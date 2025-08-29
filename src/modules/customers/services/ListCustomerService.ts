@@ -1,6 +1,6 @@
 import { IPagination } from "@shared/interfaces/PaginationInterface";
-import { Customer } from "../database/entities/Customer";
-import { customersRepositories } from "../database/repositories/CustomersRepositories";
+import { customersRepositories } from "../infra/database/repositories/CustomersRepositories";
+import { Customer } from "../infra/database/entities/Customer";
 
 export default class ListCustomerService {
   async execute(
